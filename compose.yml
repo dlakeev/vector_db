@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  vector_db:
+    image: pgvector/pgvector:pg18
+    container_name: pgvector-db
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  pgdata:
