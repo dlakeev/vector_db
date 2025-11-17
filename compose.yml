@@ -6,10 +6,12 @@ services:
     container_name: pgvector-db
     env_file:
       - .env
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5433:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
       - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
 volumes:
